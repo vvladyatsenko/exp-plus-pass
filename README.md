@@ -74,13 +74,14 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false, httpOnly: true } // Встановіть secure: true для https
-}));```markdown
+}));
+```
 ----------------------------------------------------------------------------------------
 
 ### Passport
 - Конфігурація Passport знаходиться у файлі config/passport.js. Використовується локальна стратегія авторизації з використанням email та пароля. Паролі зберігаються у зашифрованому вигляді з використанням bcryptjs.<br>
 ----------------------------------------------------------------------------------------
-
+```javascript
 passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
     const user = users.find(u => u.email === email);
     if (!user) {
@@ -105,6 +106,7 @@ passport.deserializeUser((id, done) => {
     const user = users.find(u => u.id === id);
     done(null, user);
 });
+```
 ----------------------------------------------------------------------------------------
 
 ### Приклади використання

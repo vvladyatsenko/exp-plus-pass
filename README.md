@@ -95,7 +95,7 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, don
             return done(null, false, { message: 'Incorrect email or password.' });
         }
     });
-}));```
+}));
 
 passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -104,7 +104,7 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
     const user = users.find(u => u.id === id);
     done(null, user);
-});
+});```
 ----------------------------------------------------------------------------------------
 
 ### Приклади використання

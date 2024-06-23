@@ -30,3 +30,5 @@ passport.deserializeUser((id, done) => {
   const user = users.find((u) => u.id === id);
   done(null, user);
 });
+
+module.exports = passport;

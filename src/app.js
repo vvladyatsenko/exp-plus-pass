@@ -1,9 +1,9 @@
 const express = require('express');
 const session = require('express-session');
-const passport = require('passport');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const path = require('path');
+const passport = require('./config/passport');
 
 const app = express();
 

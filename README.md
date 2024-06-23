@@ -74,7 +74,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false, httpOnly: true } // Встановіть secure: true для https
-}));
+}));```markdown
 ----------------------------------------------------------------------------------------
 
 ### Passport

@@ -68,17 +68,19 @@
 
 - Сесії налаштовані з використанням express-session. Налаштування включають секретний ключ для шифрування сесій та параметри cookie:<br>
 ----------------------------------------------------------------------------------------
+```javascript
 app.use(session({
     secret: 'your_secret_key',
     resave: false,
     saveUninitialized: false,
     cookie: { secure: false, httpOnly: true } // Встановіть secure: true для https
-}));
+}));```
 ----------------------------------------------------------------------------------------
 
 ### Passport
 - Конфігурація Passport знаходиться у файлі config/passport.js. Використовується локальна стратегія авторизації з використанням email та пароля. Паролі зберігаються у зашифрованому вигляді з використанням bcryptjs.<br>
 ----------------------------------------------------------------------------------------
+```javascript
 passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
     const user = users.find(u => u.email === email);
     if (!user) {
@@ -93,7 +95,7 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, don
             return done(null, false, { message: 'Incorrect email or password.' });
         }
     });
-}));
+}));```
 
 passport.serializeUser((user, done) => {
     done(null, user.id);

@@ -2,7 +2,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 
-const users = [];
+let users = [];
 
 passport.use(
   new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
@@ -32,3 +32,4 @@ passport.deserializeUser((id, done) => {
 });
 
 module.exports = passport;
+module.exports.users = users;

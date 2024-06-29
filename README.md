@@ -65,54 +65,6 @@
 `curl -c cookies.txt http://localhost:3000/auth/login -d "email=user@example.com&password=yourpassword"`<br>
 `curl -b cookies.txt http://localhost:3000/protected`<br>
 
-### Налаштування
-
-- Сесії налаштовані з використанням express-session. Налаштування включають секретний ключ для шифрування сесій та параметри cookie:<br>
-----------------------------------------------------------------------------------------
-
-```javascript
-app.use(session({
-    secret: 'your_secret_key',
-    resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false, httpOnly: true } // Встановіть secure: true для https
-}));
-```
-----------------------------------------------------------------------------------------
-
-### Passport
-
-- Конфігурація Passport знаходиться у файлі config/passport.js. Використовується локальна стратегія авторизації з використанням email та пароля. Паролі зберігаються у зашифрованому вигляді з використанням bcryptjs.<br>
-----------------------------------------------------------------------------------------
-
-```javascript
-passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
-    const user = users.find(u => u.email === email);
-    if (!user) {
-        return done(null, false, { message: 'Incorrect email or password.' });
-    }
-
-    bcrypt.compare(password, user.password, (err, isMatch) => {
-        if (err) throw err;
-        if (isMatch) {
-            return done(null, user);
-        } else {
-            return done(null, false, { message: 'Incorrect email or password.' });
-        }
-    });
-}));
-
-passport.serializeUser((user, done) => {
-    done(null, user.id);
-});
-
-passport.deserializeUser((id, done) => {
-    const user = users.find(u => u.id === id);
-    done(null, user);
-});
-```
-----------------------------------------------------------------------------------------
-
 ### Приклади використання
 
 Реєстрація нового користувача:<br>
@@ -124,13 +76,13 @@ passport.deserializeUser((id, done) => {
 - Введіть email та пароль для входу в систему.
 - Ви можете використовувати наступні тестові облікові записи для входу в систему:
 
-1. user1@example.com з паролем password123
-2. user2@example.com з паролем password123
-3. user3@example.com з паролем password123
-4. user4@example.com з паролем password123
-5. user5@example.com з паролем password123
-6. user6@example.com з паролем password123
-7. user7@example.com з паролем password123
+1. `user1@example.com` з паролем `password123`
+2. `user2@example.com` з паролем `password123`
+3. `user3@example.com` з паролем `password123`
+4. `user4@example.com` з паролем `password123`
+5. `user5@example.com` з паролем `password123`
+6. `user6@example.com` з паролем `password123`
+7. `user7@example.com` з паролем `password123`
 
 Доступ до захищеного маршруту:<br>
 - Після успішного входу перейдіть за адресою http://localhost:3000/protected для доступу до захищеної сторінки.

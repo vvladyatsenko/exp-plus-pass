@@ -9,15 +9,16 @@ require('dotenv').config();
 
 const app = express();
 
-// Підключення до MongoDB
 connectDB();
 
-app.use(session({
+app.use(
+  session({
     secret: 'your_secret_key',
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false, httpOnly: true }
-}));
+    cookie: { secure: false, httpOnly: true },
+  })
+);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -27,7 +28,7 @@ app.use(passport.session());
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
-app.use(express.static(path.join(__dirname, 'public'))); // Додаємо підключення до статичних файлів
+app.use(express.static(path.join(__dirname, 'public')));
 
 const authRoutes = require('./routes/auth');
 const protectedRoutes = require('./routes/protected');
@@ -38,10 +39,10 @@ app.use('/protected', protectedRoutes);
 app.use('/data', dataRoutes);
 
 app.get('/', (req, res) => {
-    res.render('index', { user: req.user });
+  res.render('index', { user: req.user });
 });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });

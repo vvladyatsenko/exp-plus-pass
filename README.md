@@ -1,4 +1,4 @@
-# Express Passport Auth Server
+# Express Passport Auth Server + MongoDB Atlas
 
 ## Опис
 

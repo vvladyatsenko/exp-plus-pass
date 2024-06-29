@@ -1,0 +1,16 @@
+doctype html
+html
+    head
+        title User Data
+    body
+        h1 User Data
+        table
+            thead
+                tr
+                    th Email
+                    th Created At
+            tbody
+                each user in users
+                    tr
+                        td= user.email
+                        td= user.createdAt

@@ -4,8 +4,12 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const passport = require('./config/passport');
+const connectDB = require('./config/db');
+require('dotenv').config();
 
 const app = express();
+
+connectDB();
 
 app.use(
   session({
@@ -26,9 +30,11 @@ app.set('views', path.join(__dirname, 'views'));
 
 const authRoutes = require('./routes/auth');
 const protectedRoutes = require('./routes/protected');
+const dataRoutes = require('./routes/data');
 
 app.use('/auth', authRoutes);
 app.use('/protected', protectedRoutes);
+app.use('/data', dataRoutes);
 
 app.get('/', (req, res) => {
   res.send('Welcome to the Express Passport Auth App');

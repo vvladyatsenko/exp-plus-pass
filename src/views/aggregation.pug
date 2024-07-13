@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  .container.mt-5
+    h1 User Statistics
+    if stats
+      ul
+        li Total Users: #{stats.totalUsers}
+        li Average Password Length: #{stats.averagePasswordLength}
+    else
+      p No statistics available.

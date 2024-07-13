@@ -33,12 +33,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const authRoutes = require('./routes/auth');
 const protectedRoutes = require('./routes/protected');
-const dataRoutes = require('./routes/data');
 const crudRoutes = require('./routes/crud');
+const cursorRoutes = require('./routes/cursor');
+app.use('/cursor', cursorRoutes);
+const aggregationRoutes = require('./routes/aggregation');
+app.use('/aggregation', aggregationRoutes);
 
 app.use('/auth', authRoutes);
 app.use('/protected', protectedRoutes);
-app.use('/data', dataRoutes);
 app.use('/crud', crudRoutes);
 
 app.get('/', (req, res) => {

@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 
 router.get('/register', (req, res) => {
-  res.render('register');
+  res.render('register', { user: req.user });
 });
 
 router.post('/register', async (req, res, next) => {
@@ -15,6 +15,7 @@ router.post('/register', async (req, res, next) => {
     if (existingUser) {
       return res.render('register', {
         error: 'User with this email already exists',
+        user: req.user,
       });
     }
 
@@ -36,7 +37,7 @@ router.post('/register', async (req, res, next) => {
 });
 
 router.get('/login', (req, res) => {
-  res.render('login', { error: req.query.error });
+  res.render('login', { error: req.query.error, user: req.user });
 });
 
 router.post('/login', (req, res, next) => {

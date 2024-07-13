@@ -21,6 +21,7 @@ app.use(
 );
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -33,10 +34,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 const authRoutes = require('./routes/auth');
 const protectedRoutes = require('./routes/protected');
 const dataRoutes = require('./routes/data');
+const crudRoutes = require('./routes/crud');
 
 app.use('/auth', authRoutes);
 app.use('/protected', protectedRoutes);
 app.use('/data', dataRoutes);
+app.use('/crud', crudRoutes);
 
 app.get('/', (req, res) => {
   res.render('index', { user: req.user });

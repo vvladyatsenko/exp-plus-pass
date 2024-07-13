@@ -1,0 +1,74 @@
+extends layout
+
+block content
+    .container.mt-5
+        h1 CRUD Operations
+        form(action="/crud/create" method="POST")
+            .form-group
+                label(for="email") Email:
+                input(type="email" class="form-control" name="email" required)
+            .form-group
+                label(for="password") Password:
+                input(type="password" class="form-control" name="password" required)
+            button(type="submit" class="btn btn-primary") Create User
+        hr
+        form(action="/crud/update" method="POST")
+            .form-group
+                label(for="email") Email:
+                input(type="email" class="form-control" name="email" required)
+            .form-group
+                label(for="password") New Password:
+                input(type="password" class="form-control" name="password" required)
+            button(type="submit" class="btn btn-primary") Update User
+        hr
+        form(action="/crud/updateMany" method="POST")
+            .form-group
+                label(for="emails") Emails (JSON):
+                textarea(class="form-control" name="emails" required) ["user1@example.com","user2@example.com"]
+            .form-group
+                label(for="password") New Password:
+                input(type="password" class="form-control" name="password" required)
+            button(type="submit" class="btn btn-primary") Update Many Users
+        hr
+        form(action="/crud/replace" method="POST")
+            .form-group
+                label(for="email") Email:
+                input(type="email" class="form-control" name="email" required)
+            .form-group
+                label(for="newEmail") New Email:
+                input(type="email" class="form-control" name="newEmail" required)
+            .form-group
+                label(for="newPassword") New Password:
+                input(type="password" class="form-control" name="newPassword" required)
+            button(type="submit" class="btn btn-primary") Replace User
+        hr
+        form(action="/crud/delete" method="POST")
+            .form-group
+                label(for="email") Email:
+                input(type="email" class="form-control" name="email" required)
+            button(type="submit" class="btn btn-danger") Delete User
+        hr
+        form(action="/crud/deleteMany" method="POST")
+            .form-group
+                label(for="emails") Emails (JSON):
+                textarea(class="form-control" name="emails" required) ["user1@example.com","user2@example.com"]
+            button(type="submit" class="btn btn-danger") Delete Many Users
+        hr
+        form(action="/crud/find" method="GET")
+            .form-group
+                label(for="email") Email (optional):
+                input(type="email" class="form-control" name="email")
+            button(type="submit" class="btn btn-primary") Find Users
+
+        if users
+            hr
+            table.table.table-striped.mt-5
+                thead
+                    tr
+                        th Email
+                        th Created At
+                tbody
+                    each user in users
+                        tr
+                            td #{user.email}
+                            td #{user.createdAt}

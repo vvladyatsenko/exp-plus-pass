@@ -4,8 +4,6 @@ require('dotenv').config();
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
       dbName: process.env.DB_NAME,
     });
     console.log('MongoDB connected successfully');
@@ -14,5 +12,5 @@ const connectDB = async () => {
     process.exit(1);
   }
 };
-
+git 
 module.exports = connectDB;

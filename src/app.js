@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const passport = require('./config/passport');
 const connectDB = require('./config/db');
+const favicon = require('serve-favicon');
 require('dotenv').config();
 
 const app = express();
@@ -29,19 +30,20 @@ app.use(passport.session());
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, './public')));
+app.use(favicon(path.join(__dirname, './public', 'favicon.ico')));
 
 const authRoutes = require('./routes/auth');
 const protectedRoutes = require('./routes/protected');
 const crudRoutes = require('./routes/crud');
 const cursorRoutes = require('./routes/cursor');
-app.use('/cursor', cursorRoutes);
 const aggregationRoutes = require('./routes/aggregation');
-app.use('/aggregation', aggregationRoutes);
 
 app.use('/auth', authRoutes);
 app.use('/protected', protectedRoutes);
 app.use('/crud', crudRoutes);
+app.use('/cursor', cursorRoutes);
+app.use('/aggregation', aggregationRoutes);
 
 app.get('/', (req, res) => {
   res.render('index', { user: req.user });

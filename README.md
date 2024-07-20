@@ -22,7 +22,7 @@
 - bcryptjs (для хешування паролів)
 - express-session (для управління сесіями)
 - MongoDB Atlas (для зберігання даних)
-- Docker (для контейнеризації)
+- Mongoose (для роботи з MongoDB)
 
 ## Встановлення
 
@@ -36,16 +36,6 @@
 - npm start або yarn start
 
 `Сервер буде доступний за адресою http://localhost:3000`
-
-## Встановлення Docker
-
-1. Встановіть Docker та Docker Compose.
-2. Створіть файл `.env` в кореневій директорії проекту та додайте необхідні змінні середовища.
-
-## Запуск Docker
-
-1. Запустіть команду `docker-compose up --build`.
-2. Сервер буде доступний за адресою `http://localhost:3000`.
 
 ## Маршрути
 
@@ -119,10 +109,6 @@
 1. `user1@example.com` з паролем `password123`
 2. `user2@example.com` з паролем `password123`
 3. `user3@example.com` з паролем `password123`
-4. `user4@example.com` з паролем `password123`
-5. `user5@example.com` з паролем `password123`
-6. `user6@example.com` з паролем `password123`
-7. `user7@example.com` з паролем `password123`
 
 Доступ до захищеного маршруту:<br>
 - Після успішного входу перейдіть за адресою `http://localhost:3000/protected` для доступу до захищеної сторінки.
